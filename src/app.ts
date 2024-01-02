@@ -1,19 +1,26 @@
-import fs from 'fs';
-console.clear();
+import { yarg } from "./config/args.plugin";
+import { ServerApp } from "./presentation/server-app";
 
+(async () => {
+   await main();
+})();
 
-const multiplicador: number = 5;
-const hasta: number = 10;
-let text: string = `===========================================\n              tabla del ${multiplicador}            \n===========================================\n`;
+async function main() {
 
-for (let i = 0; i < hasta; i++) {
-   text += `${multiplicador} X ${i+1} = ${multiplicador*(i+1)}\n`;
+   const {
+      b: base,
+      l: limit,
+      s: showTable,
+      n: fileName,
+      d: fileDestination
+   } = yarg;
+
+   ServerApp.run({
+      base,
+      limit,
+      showTable,
+      fileName,
+      fileDestination
+   });
 }
-console.log(text);
-
-const outputsPath = 'outputs';
-fs.mkdirSync(outputsPath, { recursive: true });
-fs.writeFileSync(`${outputsPath}/tabla-${multiplicador}.txt`, text);
-
-console.log('File was created!')
 
