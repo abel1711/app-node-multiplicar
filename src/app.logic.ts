@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { yarg } from './config/args.plugin';
+import { yarg } from './config/plugins/args.plugin';
 
 
 const multiplicador: number = yarg.b;
